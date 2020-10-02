@@ -8,7 +8,12 @@ function Card({image}) {
     saveAs(image.largeImageURL,'image')
   }
   return (
-      <div className="card max-w-xs rounded shadow-2xl p-5 mx-2 my-2 bg-gray-300">
+      <MemoizedChildComponent image={image} view={view} donwload={donwload}/>
+  )
+}
+function ChildComponent({image,view,donwload}){
+  return(
+    <div className="card max-w-xs rounded shadow-2xl p-5 mx-2 my-2 bg-gray-300">
         <img className="rounded -mt-10" src={image.webformatURL} alt=""/>
         <div className="flex flex-wrap mt-3 p-2">
           <span className="py-1 px-2 bg-indigo-400 rounded antialiased mr-2 mb-2 text-gray-200">Likes : 533</span>
@@ -22,5 +27,8 @@ function Card({image}) {
       </div>
   )
 }
-
+function compare(prevProps , nextProps){
+  return JSON.stringify(prevProps) === JSON.stringify(nextProps)
+}
+const MemoizedChildComponent = React.memo(ChildComponent,compare)
 export default Card

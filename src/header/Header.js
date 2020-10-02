@@ -48,7 +48,6 @@ function Header() {
   )
 }
 function Component({handleCatagory,handleOpen,open,classes,handleAuth,user}){
-  console.log('render header all')
   const body = (
     <div className={classes.paper}>
       <div className="flex flex-col gap-5" onClick={handleCatagory}>
