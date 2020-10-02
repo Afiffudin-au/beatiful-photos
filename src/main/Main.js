@@ -30,7 +30,6 @@ function Main() {
   useEffect(()=>{
     setPageNumber(paramsUrl.pageNumber)
   },[paramsUrl.pageNumber])
-  console.log(paramsUrl.pageNumber,+' '+pageNumber)
   return (
     <div className="mt-12">
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">

@@ -1,12 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import {useStylesModal} from '../useStyles/useStyles'
-import { IconButton, Input } from '@material-ui/core';
+import { IconButton} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Link} from 'react-router-dom'
 import { useStateValue } from '../stateProvider/StateProvider';
 import InputSearch from './InputSearch';
+import { auth } from '../firebase,';
 function Header() {
-  const [{paramsUrl},dispatch] = useStateValue()
+  const [{user,paramsUrl},dispatch] = useStateValue()
   const classes = useStylesModal()
   const [catagory,setCatagory] = useState('all')
   const [open, setOpen] = useState(false);
@@ -15,7 +16,10 @@ function Header() {
   };
   const handleCatagory = (e) =>{
     setCatagory(e.target.getAttribute('name'))
-    window.scrollTo(0,500);
+    const check = e.target.getAttribute('name')
+    if(check){
+      window.scrollTo(0,500)
+    }
   }
   useEffect(()=>{
     dispatch({
@@ -25,16 +29,25 @@ function Header() {
       pageNumber : 20 //if catagory change pageNumber reset by default
     })
   },[catagory,dispatch])
+
+  const handleAuth = ()=>{
+    if(user){
+      auth.signOut()
+    }
+  }
+
   return (
     <MemoizedComponent 
     handleCatagory={handleCatagory}
     handleOpen={handleOpen}
     open={open}
     classes={classes}
+    handleAuth={handleAuth}
+    user={user}
     />
   )
 }
-function Component({handleCatagory,handleOpen,open,classes}){
+function Component({handleCatagory,handleOpen,open,classes,handleAuth,user}){
   console.log('render header all')
   const body = (
     <div className={classes.paper}>
@@ -42,9 +55,15 @@ function Component({handleCatagory,handleOpen,open,classes}){
         <span name="photo" className="mr-8 font-light text-gray-100 hover:text-gray-500 cursor-pointer">photos</span>
         <span name="illustration" className="mr-8 font-light text-gray-100 hover:text-gray-500 cursor-pointer">illustrations</span>
         <span name="vector" className="mr-8 font-light text-gray-100 hover:text-gray-500 cursor-pointer">vectors</span>
+      {
+        user ? (
+          <button onClick={handleAuth} className="mr-8 w-24 font-medium bg-blue-500 hover:bg-blue-600 shadow-lg py-2 px-3 outline-none rounded text-white">Log Out</button>
+        ):(
         <Link to="/login">
           <button className="mr-8 w-32 font-medium bg-blue-500 hover:bg-blue-600 shadow-lg py-2 px-3 outline-none rounded text-white">Login</button>
         </Link>
+        )
+      }
       </div>
     </div>
   );
@@ -63,9 +82,15 @@ function Component({handleCatagory,handleOpen,open,classes}){
           <span name="photo" className="mr-8 font-light text-gray-900 hover:text-gray-600 cursor-pointer">photos</span>
           <span name="illustration"className="mr-8 font-light text-gray-900 hover:text-gray-600 cursor-pointer">illustrations</span>
           <span name="vector" className="mr-8 font-light text-gray-900 hover:text-gray-600 cursor-pointer">vectors</span>
-          <Link to="/login">
-            <button className="mr-8 font-medium bg-blue-500 hover:bg-blue-600 shadow-lg py-2 px-3 rounded text-white">Login</button>
-          </Link>
+          {
+            user ? (
+              <button onClick={handleAuth} className="w-24 mr-8 font-medium bg-blue-500 hover:bg-blue-600 shadow-lg py-2 px-3 rounded text-white">Log Out</button>
+            ):(
+              <Link to="/login">
+                <button className="mr-8 font-medium bg-blue-500 hover:bg-blue-600 shadow-lg py-2 px-3 rounded text-white">Login</button>
+              </Link>
+            )
+          }
         </div>
       </div>
       <div  className="lg:hidden block">
