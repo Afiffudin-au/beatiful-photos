@@ -41,7 +41,7 @@ function Main() {
 function ChildComponent({images,lastImageElement,error,loading}){
   return (
     <div className="mt-12">
-    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 x2k:grid-cols-5 x4k:grid-cols-6">
       {
         images.map((image,index)=>{
           if(images.length === index + 1){
