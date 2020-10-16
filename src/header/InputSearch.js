@@ -12,7 +12,7 @@ function InputSearch() {
     })
   },[query,dispatch])
   return (
-    <input value={query} onChange={(e)=>setQuery(e.target.value)} className="px-2 py-2 outline-none shadow-lg mr-1 w-full rounded" type="text" placeholder="Auto Search"/>
+    <input aria-label="input-search" value={query} onChange={(e)=>setQuery(e.target.value)} className="px-2 py-2 outline-none shadow-lg mr-1 w-full rounded" type="text" placeholder="Auto Search"/>
   )
 }
 

@@ -25,9 +25,9 @@ function ChildComponent({query,setQuery}){
       <h1 className="font-bold text-center text-white text-xl sm:text-3xl mb-8">Amazing free images</h1>
       <p className="font-light text-center text-white text-md mb-8">up to 30.000 image is free</p>
       <div className="py-1 px-1 bg-white flex w-full rounded shadow-lg">
-        <input value={query} onChange={(e)=>setQuery(e.target.value)} type="text" className="py-2 px-2 outline-none w-full" placeholder="Auto Search"/>
-        <IconButton style={{outline : 0}}>
-          <SearchIcon style={{fontSize : '25px'}}/>
+        <input aria-label="input search" value={query} onChange={(e)=>setQuery(e.target.value)} type="text" className="py-2 px-2 outline-none w-full" placeholder="Auto Search"/>
+        <IconButton style={{outline : 0}} aria-label="Search">
+          <SearchIcon style={{fontSize : '25px'}} aria-label={'Search Icon'}/>
         </IconButton>
       </div>
     </div>
