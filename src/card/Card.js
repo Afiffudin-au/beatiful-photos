@@ -1,6 +1,7 @@
 import React from 'react'
 import { saveAs } from 'file-saver';
 import LazyLoad from 'react-lazyload';
+import LinearProgress from '@material-ui/core/LinearProgress';
 function Card({image}) {
   const view = ()=>{
     window.open(image.largeImageURL,'_blank');
@@ -19,6 +20,7 @@ function ChildComponent({image,view,donwload}){
           width={150}
           height={200}
           debounce={false}
+          placeholder={<LinearProgress color="secondary"/>}
           >
           <img className="rounded -mt-10" src={image.webformatURL} alt=""/>
          </LazyLoad>
