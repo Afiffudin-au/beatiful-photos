@@ -4,6 +4,10 @@ function InputSearch() {
   const [query,setQuery] = useState('')
   const [{paramsUrl},dispatch] = useStateValue()
   useEffect(()=>{
+    const userText = query.replace(/^\s+/, '').replace(/\s+$/, '');
+    if(userText === ''){
+      return
+    }
     dispatch({
       type : 'SET_PARAMS',
       query : query,

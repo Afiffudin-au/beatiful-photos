@@ -7,6 +7,10 @@ function Banner() {
   const [{paramsUrl},dispatch]=  useStateValue()
   const [query,setQuery] = useState('')
   useEffect(()=>{
+    const userText = query.replace(/^\s+/, '').replace(/\s+$/, '');
+    if(userText === ''){
+      return
+    }
     dispatch({
       type : 'SET_PARAMS',
       query : query,
