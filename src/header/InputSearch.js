@@ -12,7 +12,7 @@ function InputSearch() {
       type : 'SET_PARAMS',
       query : query,
       catagory : paramsUrl.catagory,
-      pageNumber : 20 //if query typing page number restart by default
+      pageNumber : 20 //if query typing, page number restart by default
     })
   },[query,dispatch])
   return (
