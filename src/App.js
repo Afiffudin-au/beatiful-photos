@@ -1,52 +1,48 @@
-import React,{useEffect} from 'react';
-import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
-import Header from './header/Header';
-import Login from './login/Login';
-import Banner from './banner/Banner';
-import Main from './main/Main';
-import { useStateValue } from './stateProvider/StateProvider';
-import { auth } from './firebase,';
+import React, { useEffect } from 'react'
+import './App.css'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Header from './header/Header'
+import Login from './login/Login'
+import Banner from './banner/Banner'
+import Main from './main/Main'
+import { useStateValue } from './stateProvider/StateProvider'
+import { auth } from './firebase,'
 function App() {
-  const [{},dispatch] = useStateValue()
-  useEffect(()=>{
-    const unsubscribe =  auth.onAuthStateChanged((authUser)=>{
-      if(authUser){
+  const [{}, dispatch] = useStateValue()
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
         dispatch({
-          type : 'SET_USER',
-          user : authUser
+          type: 'SET_USER',
+          user: authUser,
         })
-      }else{
+      } else {
         dispatch({
-          type : 'SET_USER',
-          user : null
+          type: 'SET_USER',
+          user: null,
         })
       }
     })
-    return()=>{
+    return () => {
       unsubscribe()
     }
-  },[dispatch])
+  }, [dispatch])
   return (
-    <Router> 
-      <div className="App">
+    <Router>
+      <div className='App'>
         <Switch>
-        <Route path="/login">
-           <Login/>
+          <Route path='/login'>
+            <Login />
           </Route>
-          <Route path="/">
-            <Header/>
-            <Banner/>
-            <Main/>
+          <Route path='/'>
+            <Header />
+            <Banner />
+            <Main />
           </Route>
-        </Switch> 
+        </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
