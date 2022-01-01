@@ -1,4 +1,7 @@
-Site Project : https://beatiful-photos.web.app/
+## Description
+this is a "beautiful photos" project. This app is integrated with pixabay API. The purpose of this application is to search images in realtime (auto search) and easily. Displays many images such as photos, illustrations, vectors and can be downloaded and responsive web design. Built using React, this app is extremely fast and flexible.
+
+Site Project : https://beatiful-photos.netlify.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
