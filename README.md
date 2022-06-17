@@ -3,9 +3,6 @@ this is a "beautiful photos" project. This app is integrated with pixabay API. T
 
 Site Project : https://beatiful-photos.netlify.app/
 
-## Note
-Most of my projects are of the private type, but for now and so on I will make my projects public freely.
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
